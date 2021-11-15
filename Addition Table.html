@@ -15,16 +15,17 @@
 <body>
 
 <h2 id="title">Poisson Probabilities</h2>
-i = <input type="number" id="ex" value="0" onchange="calculate()">
- 
-j= <input type="number" id="lam" value="1" onchange="calculate()">
+<!-- fN= First Number  -->
+i = <input type="number" id="fN" value="0" onchange="calculate()"> 
+<!-- sN= Second Number  -->
+j= <input type="number" id="sN" value="1" onchange="calculate()">
  
 <span id="res">P(i, j) = 1</span>
 <pre id="out">      </pre>
 
 <hr>
 <b>Sample code</b>
-<pre id="sample">addition(i,j) {<br>    let p = Math.exp(-λ)<br>    for (let k=1; k&lt;=x; k++) p = p*λ/k<br>    return p.toFixed(f)<br>}<br>function doTable() {<br>    const L = [0.5, 1, 1.5, 2, 2.5, 3]<br>    let a = L.map((λ) =&gt; 'λ='+λ)<br>    let str = header(a)<br>    for (let x=0; x&lt;=8; x++) { <br>       let a = L.map((λ) =&gt; poisson(x, λ))<br>       str += oneLine(a, x)<br>    }<br>    return str<br>}</pre>
+<pre id="sample">addition(i,j) </pre>
 
 <hr>
 <p>Ref: <a href="https://www.mathsisfun.com/numbers/addition-table.html" target="NewTab">Addition Table</a>
@@ -37,9 +38,9 @@ function addition(i,j) {
     return (i+j)
 }
 function calculate() {
-    let i = Number(ex.value)
+    let i = Number(fN.value)
     
-    let j = Number(lam.value)
+    let j = Number(sN.value)
     res.innerText = "A(i, j) = "+addition(i,j)
 }
 function doTable() {
@@ -48,19 +49,38 @@ function doTable() {
     let str = header(a)
     for (let i=0; i<=8; i++) { 
        let a = L.map((j) => addition(i, j))
-       str += oneLine(a, i)
+       for (let k=0; k<=7; k++) { 
+       str += oneLine(a, i, k)
+       }
     }
     return str
 }
-let header  = (a) => '     '+ a.join('   ')  //pre
-let oneLine = (a, x) => '\nx='+x+'   '+ a.join('     ')
+let header  = (a) => '     '+ a.join('  ')  //pre
+
+function oneLine (a, x, k){
+   
+    if (a[k] < 10) {
+        if(k==0){return('\nx='+x+'    '+ a[k])}
+
+        else{return('    '+ a[k])
+
+        }
+    }
+
+    else{if(k==0){return('\nx='+x+'   '+ a[k])}
+
+        else{return('   '+ a[k])
+
+} }
+}
+
+
     
-    title.innerText = document.title
+    title.innerText = document.title 
     sample.innerText = addition+'\n'+doTable
     calculate()
     out.innerText = doTable()
 </script>
-
 
 
 </body></html>
