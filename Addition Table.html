@@ -30,7 +30,9 @@ j= <input type="number" id="sN" value="1" onchange="calculate()">
 <hr>
 <p>Ref: <a href="https://www.mathsisfun.com/numbers/addition-table.html" target="NewTab">Addition Table</a>
 </p>
-
+<p>Original table:
+<img src="https://i.pinimg.com/originals/bd/73/89/bd738902678219f4f0cef91def22c7e4.jpg" style="width:400px;height:400px;">
+</p>
 <script>
 "use strict";
 function addition(i,j) {
@@ -60,14 +62,14 @@ let header  = (a) => '     '+ a.join('  ')  //pre
 function oneLine (a, x, k){
    
     if (a[k] < 10) {
-        if(k==0){return('\ni='+x+'    '+ a[k])}
+        if(k==0){return('\nx='+x+'    '+ a[k])}
 
         else{return('    '+ a[k])
 
         }
     }
 
-    else{if(k==0){return('\ni='+x+'   '+ a[k])}
+    else{if(k==0){return('\nx='+x+'   '+ a[k])}
 
         else{return('   '+ a[k])
 
