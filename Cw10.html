@@ -4,7 +4,7 @@
     
     <meta name="viewport" content="width=device-width">
     <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
-    <title>Cw9 </title>
+    <title>Cw10 </title>
 
   <style> /* CSS comment */
     body { max-width: 440px; }
@@ -42,11 +42,11 @@ function init() {
 
   navigator.getBattery().then(b =>
      
-      b.onlevelchange=e => lev.innerText=(b.level,b.charging),
+      b.onlevelchange=e => lev.innerText=(b.level+" charging:"+b.charging)
       
       );
       navigator.getBattery().then(b =>
-      b.onchargingchange=e => lev.innerText=(b.level,b.charging)
+      b.onchargingchange=e => lev.innerText=(b.level+" charging:"+b.charging)
       );
 }
 init()
