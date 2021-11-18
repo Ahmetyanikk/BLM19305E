@@ -39,6 +39,11 @@ function init() {
   OS.innerText = navigator.onLine
   ononline = (e) => OS.innerText =navigator.onLine
   onoffline = (e) => Os.innerText =  navigator.onLine
+     navigator.getBattery().then(b =>
+     
+     lev.innerText=(b.level+" charging:"+b.charging)
+      
+      );
 
   navigator.getBattery().then(b =>
      
