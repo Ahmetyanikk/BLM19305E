@@ -41,17 +41,17 @@ function init() {
   onoffline = (e) => Os.innerText =  navigator.onLine
      navigator.getBattery().then(b =>
      
-     lev.innerText=(b.level+" charging:"+b.charging)
+     lev.innerText=(b.level*100+" charging:"+b.charging)
       
       );
 
   navigator.getBattery().then(b =>
      
-      b.onlevelchange=e => lev.innerText=(b.level+" charging:"+b.charging)
+      b.onlevelchange=e => lev.innerText=(b.level*100+" charging:"+b.charging)
       
       );
       navigator.getBattery().then(b =>
-      b.onchargingchange=e => lev.innerText=(b.level+" charging:"+b.charging)
+      b.onchargingchange=e => lev.innerText=(b.level*100+" charging:"+b.charging)
       );
 }
 init()
