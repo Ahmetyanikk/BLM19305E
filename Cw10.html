@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://blm305.github.io/2021/work/CW6.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Cw9 </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #url { width: 190px; }
+    span, #url { color: blue; }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id="title" title="Put your name here">Cw9</h2>
+<p title="Battery level (integer)">
+  Battery level: <span id="lev">xxx</span>
+</p>
+<p title="Online Status">
+  Online Status: <span id="OS">xxx</span>
+</p>
+<p title="Keyboard">
+  Keyboard: <span id="KB">xxx</span>
+</p>
+<hr>
+<b>Sample code</b>
+<pre id="sample">function init() {<br>//complete the code below<br>    plat.innerText = 'xxx';<br>    navigator.geolocation<br>      .getCurrentPosition(p =&gt;<br>        loc.innerText = 'xxx'<br>      );<br>    navigator.getBattery().then(b =&gt;<br>        lev.innerText = 'xxx'<br>      );<br>    check()<br>}<br>function check() {<br>//complete the code below<br>    fetch(url.value).then(r =&gt; <br>      resp.innerText = r.ok? 'OK' : 'xxx'<br>    ).catch(e =&gt; <br>      resp.innerText = 'err'<br>    )<br>}</pre>
+
+<hr>
+
+<script>
+"use strict";
+function init() {
+  window.onkeyup = e => KB.innerText=e.key
+//complete the code below
+  OS.innerText = navigator.onLine
+  ononline = (e) => OS.innerText =navigator.onLine
+  onoffline = (e) => Os.innerText =  navigator.onLine
+
+  navigator.getBattery().then(b =>
+     
+      b.onlevelchange=e => lev.innerText=(b.level,b.charging),
+      
+      );
+      navigator.getBattery().then(b =>
+      b.onchargingchange=e => lev.innerText=(b.level,b.charging)
+      );
+}
+init()
+</script>
+
+
+
+</body></html>
