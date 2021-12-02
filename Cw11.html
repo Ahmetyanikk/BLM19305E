@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://blm305.github.io/2021/work/GitHub_Users.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="https://blm305.github.io/2021/images/icon192.png">
+  <title>GitHub Users</title>
+  <style>
+    body {
+        max-width: 440px;
+    }
+    img {
+        padding-right: 12px; 
+        width: 256px;
+        float: left;
+    }
+    pre { overflow-x: auto; }
+    #out { color: blue; }
+  </style>
+</head>
+
+<body>
+<p>
+<h2 id="title">GitHub Users</h2>
+<input type="text" id="usr" value="ahmetyanikk" onchange="readUser()">
+<img id=out style="width: 400px;height: 400px;"></img>
+
+<h2 id=nameInfo></h2>
+<h3 id=userNameInfo></h3>
+<i>Company:</i>
+<b id="companyInfo"> </b>
+<p><i>Location : </i> </p>
+<b id="locationInfo">  </b>
+<p><i>Mail:</i> </p>
+<b id="mailInfo">  </b>
+<p><i>Github:</i> </p>
+<b id="githubInfo">  </b>
+
+
+<p>Ref: 
+  <a href="https://docs.github.com/en/rest/reference/rate-limit" target="NewTab">GitHub API</a>  
+  <a href="https://blm305.github.io/2021/work/await.html" target="NewTab">await</a>
+</p>
+
+<script>
+"use strict";
+function error(e) {
+    out.innerText = e
+    out.style.color = 'red'
+    console.error(e)
+}
+function cause(s) {
+  switch (s) {
+    case 403:
+      return 'Rate limit exceeded'
+    case 404:
+      return usr.value+' not found'
+    default:
+      return 'Status '+s
+  }
+}
+async function toJSON(url) {
+  try {
+    let r = await fetch(url)
+    if (!r.ok) throw cause(r.status)
+    return r.json()
+  } catch (e) {
+    error(e)
+  }
+}
+async function readUser() {
+    const URL = "https://api.github.com/users/"
+    const BR = '<BR>'
+    let u = await toJSON(URL+usr.value)
+    if (!u || !u.login) return
+    out.style.color = ''
+    //start with avatar
+    out.src = u.avatar_url = u.avatar_url;
+    out.innerHTML = `<img src="${u.avatar_url}">`
+    //add name and location
+     userNameInfo.innerText = u.login;
+  nameInfo.innerText = u.name;
+  companyInfo.innerText = u.company;
+  locationInfo.innerText = u.location;
+  mailInfo.innerText = u.email;
+  githubInfo.innerText = u.blog;
+    //add link to GitHub 
+    let h = "github.com/"+u.login
+    out.innerHTML += 
+    `<a href="https://${h}" target=NewTab>${h}</a>`
+    
+}
+    title.innerText = document.title
+  
+    readUser()
+</script>
+
+</ul></nav>
+
+
+
+</body></html>
