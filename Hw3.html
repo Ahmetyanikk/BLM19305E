@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://blm305.github.io/2021/work/JS_Animation -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+   
+    <title>HW#3 -- JS Animations Ödev</title>
+
+  <style>
+    body {  max-width: 450px; }
+    #sample { overflow-x: auto; }
+    #main {
+            width: 100%; height: 40vh;
+            background: rgb(58, 52, 52);
+        }
+    button {
+      user-select: none;
+      cursor: pointer;
+    }
+    #box {
+      font-size: 180px;
+      background: rgb(255, 238, 0);
+      width: 50px;
+      height: 100px;
+      position: relative;
+    }
+   
+    
+   
+  </style>
+</head>
+
+<body>
+
+<h2 id="title">HW#3 -- JS AnimationsÖdev</h2>
+
+<div id=main>
+<div id="box" onclick="myAnimate()">
+
+  
+</div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+"use strict";
+
+let
+ x0 = "translateX(0px,500px)",x1 = "translate(200px,300px)",x2="translate(400px,150px)",x3="translate(200px,0px)",x4="translate(0px,150px)",
+  t1 = { transform: [x0, x1, x2,x3,x4,x1,x2,x3,x0] },
+  t3 = { background: ["yellow", "cyan", "magenta", "yellow"] },
+  a = [t1, t3];
+  function myAnimate(){
+    box.animate(t3, 5000)
+    box.animate(t1, 5000)
+  }
+
+ 
+</script>
+</nav>
+
+
+
+</body></html>
