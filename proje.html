@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Sayaç </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #inp { width: 50px }
+    #out {
+        font-size: 18px;
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+    .button{
+      margin-top: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 15px;
+  width: 60%;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #81b214;
+
+  font-size: 1.25rem;
+  color: #81b214;
+
+    }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+  <h1> Tic Tac Toe </h1>
+  <h2> Lütfen Nasıl Oynuyacağını Seçin </h2>
+   
+<input type="button"id="asd" value="Yapay Zekaya Karşı Oyna"onclick="Ai()">
+<input type="button"id="asd2" value="Çok Oyunculu Oyna" onclick="Multiplayer()">
+
+
+
+<p>Ref: <a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="NewTab">Tic Tac Toe</a>
+</p>
+
+<script>
+"use strict";
+// JavaScript comment
+var yapayZeka=0;
+function Ai() {
+  yapayZeka=1
+  document.getElementById("asd").style.visibility = "hidden";
+  document.getElementById("asd2").style.visibility = "hidden"; 
+}
+function Multiplayer() {
+  yapayZeka=0   
+  document.getElementById("asd").style.visibility = "hidden";
+  document.getElementById("asd2").style.visibility = "hidden";
+}
+function init(){
+
+
+}
+    //global variable id is the HTML element with id 
+    //const title = document.getElementById("title");
+    title.innerText = document.title;
+    sample.innerText = increment.toString();
+    out.innerText = 0; increment();
+</script>
+
+
+
+</body></html>
