@@ -15,7 +15,7 @@
         text-align: center;
         padding: 10px;
     }
-    .button{
+  .button{
       margin-top: 20px;
   margin-left: 20%;
   margin-right: 20%;
@@ -24,11 +24,20 @@
   background: white;
   border-radius: 5px;
   border: 2px solid #81b214;
-
+    
   font-size: 1.25rem;
   color: #81b214;
 
     }
+    .container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    max-width: 300px;
+    visibility: visible;
+
+}
   </style>
 </head>
 
@@ -36,8 +45,19 @@
   <h1> Tic Tac Toe </h1>
   <h2> Lütfen Nasıl Oynuyacağını Seçin </h2>
    
-<input type="button"id="asd" value="Yapay Zekaya Karşı Oyna"onclick="Ai()">
-<input type="button"id="asd2" value="Çok Oyunculu Oyna" onclick="Multiplayer()">
+<input type="button"button class="button"id="asd" value="Yapay Zekaya Karşı Oyna"onclick="Ai()">
+<input type="button"button class="button"id="asd2" value="Çok Oyunculu Oyna" onclick="Multiplayer()">
+<section class="container">
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+</section>
 
 
 
@@ -52,6 +72,7 @@ function Ai() {
   yapayZeka=1
   document.getElementById("asd").style.visibility = "hidden";
   document.getElementById("asd2").style.visibility = "hidden"; 
+  init();
 }
 function Multiplayer() {
   yapayZeka=0   
@@ -59,7 +80,15 @@ function Multiplayer() {
   document.getElementById("asd2").style.visibility = "hidden";
 }
 function init(){
+if(yapayZeka==0){
 
+}
+else if(yapayZeka==1){
+
+}
+else{
+  console.log("bilinmeyen bir hata oluştu ");
+}
 
 }
     //global variable id is the HTML element with id 
