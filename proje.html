@@ -2,100 +2,342 @@
 <html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
-    <title>Sayaç </title>
+    <link rel="icon" href="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/c3942550783f954de418d4e4e3146386.jpeg">
+    <title> Tic-tac-toe </title>
 
   <style> /* CSS comment */
-    body { max-width: 440px; }
-    #inp { width: 50px }
-    #out {
-        font-size: 18px;
-        background: blue;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
-  .button{
-      margin-top: 20px;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 15px;
-  width: 60%;
-  background: white;
-  border-radius: 5px;
-  border: 2px solid #81b214;
-    
-  font-size: 1.25rem;
-  color: #81b214;
+ *{
+    padding: 0;
+    margin: 0;
+    font-family: 'Itim', cursive;
+}
 
-    }
-    .container {
+.background {
+    background-color: #191919;
+    height: 100vh;
+    padding-top: 1px;
+}
+
+.title {
+    color: #ECDBBA;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 10%;
+}
+.modtitle{
+  color: #ECDBBA;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5%;
+}
+
+.display {
+    color: #ECDBBA;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    visibility: hidden
+}
+.displayFinal {
+    color: #ECDBBA;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
+}
+
+.hide {
+    display: none;
+}
+
+.container {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 33% 33% 33%;
     max-width: 300px;
-    visibility: visible;
+    visibility: hidden;
 
+}
+
+.tile {
+    border: 1px solid #ECDBBA;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.playerX {
+    color: #C84B31;
+}
+
+.playerO {
+    color: #498AFB;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.controls button {
+    color: #ECDBBA;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 20px;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.restart {
+    background-color: #498AFB;
+}
+
+#reset {
+    background-color: #C84B31;
+    visibility: hidden;
+}
+.modbutton{
+  
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 15px;
+  width: 60%;
+  background: #2D4263;
+  border-radius: 5px;
+  border: 2px solid #2D4263;
+    
+  font-size: 1.25rem;
+  color: #C84B31;
 }
   </style>
 </head>
+<body>  
+  <main class="background">
+    <section class="title">
+        <h1>Tic Tac Toe</h1>
+    </section>
+    <section class="modtitle">
+      <h2> Lütfen Nasıl Oynuyacağınızı Seçin </h2>
+  </section>
+    <section class="mod">
+      <input type="button"button class="button modbutton "id="asd" value="Yapay Zekaya Karşı Oyna"onclick="Ai()">
+      <input type="button"button class="button modbutton "id="asd2" value="Çok Oyunculu Oyna" onclick="Multiplayer()">
+  </section>
+    <section class="display">
+        Player <span class="display-player playerX">X</span>'s turn
+    </section>
+    <section class="container">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+    </section>
+    <section class="displayFinal announcer hide"></section>
+    <section class="controls">
+        <button id="reset">Reset</button>
+    </section>
+    Ref: <a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="NewTab">Tic Tac Toe</a>
+    
+</main>
 
-<body>   <!-- HTML comment: Modify all items marked xxx -->
-  <h1> Tic Tac Toe </h1>
-  <h2> Lütfen Nasıl Oynuyacağını Seçin </h2>
-   
-<input type="button"button class="button"id="asd" value="Yapay Zekaya Karşı Oyna"onclick="Ai()">
-<input type="button"button class="button"id="asd2" value="Çok Oyunculu Oyna" onclick="Multiplayer()">
-<section class="container">
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-</section>
 
 
-
-<p>Ref: <a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="NewTab">Tic Tac Toe</a>
-</p>
 
 <script>
 "use strict";
 // JavaScript comment
-var yapayZeka=0;
+var aiOpen=0;// yapay zekanın açılması için  değişken
+var aiAction=0; // yapay zeka oynarken  kullandığı değişken
 function Ai() {
-  yapayZeka=1
-  document.getElementById("asd").style.visibility = "hidden";
-  document.getElementById("asd2").style.visibility = "hidden"; 
-  init();
+  aiOpen=1
+  document.getElementById("asd").style.display = "none";
+  document.getElementById("asd2").style.display = "none";
+  document.getElementsByClassName('modtitle')[0].style.display='none';
+  document.getElementsByClassName('container')[0].style.visibility='visible';
+  document.getElementsByClassName('display')[0].style.visibility='visible';
+  document.getElementById("reset").style.visibility = "visible";
+  // buttonları kapatıp oyun ekranını açıyor
+
+
 }
 function Multiplayer() {
-  yapayZeka=0   
-  document.getElementById("asd").style.visibility = "hidden";
-  document.getElementById("asd2").style.visibility = "hidden";
+  aiOpen=0   
+  document.getElementById("asd").style.display = "none";
+  document.getElementById("asd2").style.display = "none";
+  document.getElementsByClassName('modtitle')[0].style.display='none';
+  document.getElementsByClassName('container')[0].style.visibility='visible';
+  document.getElementsByClassName('display')[0].style.visibility='visible';
+  document.getElementById("reset").style.visibility = "visible";
+  // buttonları kapatıp oyun ekranını açıyor
 }
-function init(){
-if(yapayZeka==0){
+window.addEventListener('DOMContentLoaded', () => {
+const tiles = Array.from(document.querySelectorAll('.tile'));
+    const playerDisplay = document.querySelector('.display-player');
+    const resetButton = document.querySelector('#reset');
+    const announcer = document.querySelector('.announcer');
 
-}
-else if(yapayZeka==1){
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let currentPlayer = 'X';
+    let isGameActive = true;
+    
+    
 
-}
-else{
-  console.log("bilinmeyen bir hata oluştu ");
-}
+    const PLAYERX_WON = 'PLAYERX_WON';
+    const PLAYERO_WON = 'PLAYERO_WON';
+    const TIE = 'TIE';
 
-}
-    //global variable id is the HTML element with id 
-    //const title = document.getElementById("title");
-    title.innerText = document.title;
-    sample.innerText = increment.toString();
-    out.innerText = 0; increment();
+
+    /*
+         tic tac toe masa örneği
+        [0] [1] [2]
+        [3] [4] [5]
+        [6] [7] [8]
+    */
+
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    function handleResultValidation() {
+      //225den 238e kadar tahtayı kontrol edip oyunun bitip bitmediğini söylüyor
+        let roundWon = false;
+        for (let i = 0; i <= 7; i++) {
+            const winCondition = winningConditions[i];
+            const a = board[winCondition[0]];
+            const b = board[winCondition[1]];
+            const c = board[winCondition[2]];
+            if (a === '' || b === '' || c === '') {
+                continue;
+            }
+            if (a === b && b === c) {
+                roundWon = true;
+                break;
+            }
+        }
+        // bittiyse kazananı açıklayıp oyunu kapatıyor
+    if (roundWon) {
+      
+            announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
+            isGameActive = false;
+            return;
+        }
+
+    if (!board.includes(''))
+        announce(TIE);
+    }
+    const announce = (type) => {
+        switch(type){
+            case PLAYERO_WON:
+                announcer.innerHTML = 'Player <span class="playerO">O</span> Won';
+                break;
+            case PLAYERX_WON:
+                announcer.innerHTML = 'Player <span class="playerX">X</span> Won';
+
+
+                break;
+            case TIE:
+                announcer.innerText = 'Tie';
+        }
+        announcer.classList.remove('hide');
+    };
+
+    const isValidAction = (tile) => {
+        if (tile.innerText === 'X' || tile.innerText === 'O'){
+            return false;
+        }
+
+        return true;
+    };
+
+    const updateBoard =  (index) => {
+        board[index] = currentPlayer;
+
+    }
+    const updateBoardAi =  (index) => {
+        board[index] = 'O';
+    }
+    const changePlayer = () => {
+        playerDisplay.classList.remove(`player${currentPlayer}`);
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        playerDisplay.innerText = currentPlayer;
+        playerDisplay.classList.add(`player${currentPlayer}`);
+    }
+
+    const userAction = (tile, index) => {
+        if(isValidAction(tile) && isGameActive) {
+            tile.innerText = currentPlayer;
+            tile.classList.add(`player${currentPlayer}`);
+            updateBoard(index);
+            handleResultValidation();
+            if(aiOpen==0){ 
+              changePlayer();
+            }
+            else if(aiOpen==1){
+             
+              aiAction= Math.floor(Math.random()*8) ;
+              while(board[aiAction]!=''){
+                aiAction= Math.floor(Math.random()*8) ;
+              }
+              tiles[aiAction].innerText = 'O';
+              tiles[aiAction].classList.add(`player${'O'}`);
+              updateBoardAi(aiAction);
+             
+              handleResultValidation();
+              
+              
+            }
+           
+        }
+    }
+    
+    const resetBoard = () => {
+        board = ['', '', '', '', '', '', '', '', ''];
+        isGameActive = true;
+        announcer.classList.add('hide');
+
+        if (currentPlayer === 'O') {
+            changePlayer();
+        }
+
+        tiles.forEach(tile => {
+            tile.innerText = '';
+            tile.classList.remove('playerX');
+            tile.classList.remove('playerO');
+        });
+    }
+
+    tiles.forEach( (tile, index) => {
+        tile.addEventListener('click', () => userAction(tile, index));
+    });
+
+    resetButton.addEventListener('click', resetBoard);
+});
+
+    
 </script>
 
 
