@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://blm305.github.io/2021/work/Students -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <title>Student Database </title>
+
+  <style>
+    body { max-width: 500px; }
+    pre { overflow-x: auto; }
+    .link {
+        color: blue;
+        cursor: pointer;
+        font-style: italic;
+    }
+    .liste {
+        visibility: hidden;
+        font: 11px arial, sans-serif;
+        color: white;
+        background: blue;
+        cursor: text;
+        padding: 6px;
+        position: absolute;
+        height: 116px;
+        overflow-y: auto;
+    }
+    .link:hover .liste { 
+        visibility: visible; 
+    }
+  </style>
+</head>
+
+<body>
+<h2 id="title">Student Database</h2>
+
+<button id="random">Random</button>
+<button id="best">Best GPA</button>
+<button id="clear">Clear</button>
+
+<p>Student id: 
+<input type="number" onchange="showStudent(value)">
+</p>
+<p>Course id: 
+<input type="text" onchange="showCourse(value)" value="math 206 ">
+</p>
+<p id="out">Result:<br>
+3128 items </p>
+
+<hr>
+<b>Sample code</b>
+<pre id="sample">class Course {<br>    constructor(id, time, date, ...rooms) {<br>    }<br>    toString() {<br>        return "implement this"<br>    }<br>    static fromString(s) {<br>        return "implement this"<br>    }<br>}<br>function readCourses() {<br>    return "implement this"<br>}<br>function findBest() { //the best gpa in stdMap<br>    report("Best ", "implement this");<br>}</pre>
+<hr>
+
+<script>
+"use strict";
+class Student {
+    constructor(id, name, gpa, ...list) {
+        if (!id) throw "Undefined Student id"
+        this.id = id; this.name = name;
+        this.gpa = gpa.padEnd(4,'0'); 
+        this.list = list
+    }
+    toString() {
+        return this.id+' '+this.name+' '+this.gpa
+    }
+    static fromString(s) {
+        return new Student(...s.split('\t'))
+    }
+}
+class Course {
+    constructor(id, time, date, ...rooms) {
+    }
+    toString() {
+        return this.id+' '+this.time+' '+this.date
+    }
+    static fromString(s) {
+        return new Course(...s.split('\t'))
+    }
+}
+
+function report(msg, id, list) {
+    msg += " "; let txt = "<br>\n"+msg;
+    if (id) {
+        msg += id; txt += "<span class=link>"+id
+        if (list)  txt += "<span class=liste>"
+                    +list.join("<br>")+"</span>"
+        txt += "</span>"
+    }
+    console.log(msg); out.innerHTML += txt; 
+}
+const stdMap = new Map(), crsMap = new Map(); //global
+function makeData(txt, Maker, map) {
+    map.clear()
+    for (let line of txt.split('\n')) {
+        if (!line) continue
+        let std = Maker.fromString(line)
+        map.set(std.id, std)
+    }
+    report(map.size+" items");
+    return map;
+}
+function doClick(evt) {
+    let s = evt.target.innerText;
+    //if s contains only digits
+    if (/^\d+$/.test(s)) showStudent(s); 
+}
+function showStudent(id) {
+    let std = stdMap.get(id);
+    if (!std) return report(id+" not found");
+    let t = std.toString()
+    report(t, "("+std.list.length+" courses)", std.list);
+    return std
+}
+function showCourse(id) {
+    let i=0;
+    let studentArray = [];
+    id = id.toUpperCase();
+    for (let std of stdMap.values())
+                if (std.list.includes(id))
+                studentArray.push(std.id + " " + std.name);
+            if (studentArray.length > 0) {
+                report(id + ": ", studentArray.length + " students", studentArray);
+            }
+    return studentArray;
+    while( i<studentArray.length){
+        report(id,studentArray[i]);
+        console.log(studentArray[i]);
+        i=i+1;
+    }
+        }
+
+function randomStd() {
+    let keys = [...stdMap.keys()]  //Iterable
+    console.assert(keys.length == stdMap.size)
+    let i = Math.trunc(keys.length * Math.random());
+    let b = stdMap.get(keys[i]);
+    report("Random: ", b.id);
+    return b
+}
+function findBest() { //the best gpa in stdMap
+    let bestGpa = 0
+            for (let student of stdMap.values()) {
+                if (student.gpa > bestGpa)
+                    bestGpa = student.gpa
+            }
+    report("Best ", bestGpa);
+}
+const LINK = "https://maeyler.github.io/JS/data/"
+function readStudents() {
+    fetch(LINK+"Students.txt").then(r => r.text())
+    .then(t => makeData(t, Student, stdMap))
+}
+function readCourses() {
+    fetch(LINK + "Courses.txt").then(r => r.text())
+                .then(x => makeData(x, Course, crsMap))
+    return x
+}
+title.innerText = document.title
+sample.innerText = Course+"\n"+readCourses+"\n"+findBest
+out.onclick =  doClick
+random.onclick = randomStd
+best.onclick = findBest
+clear.onclick = () => {out.innerText=""}
+readStudents(); //readCourses();
+</script>
+
+
+</body></html>
